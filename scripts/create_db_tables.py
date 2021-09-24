@@ -144,7 +144,7 @@ def fetch_data_from_table(dbName: str, tableName: str) -> None:
             print(":::", i)
 
         conn.commit()
-        print("Inserted Records, Sucessfully")
+        print("Records Fetched, Sucessfully")
     except Exception as e:
         print(":::", e)
 
