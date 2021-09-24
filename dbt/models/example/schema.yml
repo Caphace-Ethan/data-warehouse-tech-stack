@@ -1,7 +1,18 @@
 
 version: 2
 
+sources:
+      - name: sensor_data
+        description: 'A database dbt model'
+        database: sensor_data
+        tables:
+          - name: stations
+            description: "A table dbt model"
+
 models:
+    - name: station_data
+      description: "A starter dbt model"
+
     - name: my_first_dbt_model
       description: "A starter dbt model"
       columns:
