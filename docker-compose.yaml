@@ -112,7 +112,7 @@ services:
     <<: *airflow-common
     command: webserver
     ports:
-      - '8081:8080'
+      - '8080:8080'
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
       interval: 10s
@@ -144,13 +144,22 @@ services:
     <<: *airflow-common
     command: celery flower
     ports:
-      - 5555:5555
+      - '5555:5555'
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:5555/"]
       interval: 10s
       timeout: 10s
       retries: 5
     restart: always
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - '8000:8080'
+    depends_on:
+      - postgres
+      - db
 
 volumes:
   postgres-db-volume:
