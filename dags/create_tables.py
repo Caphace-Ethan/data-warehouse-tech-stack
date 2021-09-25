@@ -6,11 +6,13 @@ import time
 
 
 def _create_db_table():
+	# Execute dbt to compile models
 	time.sleep(15)
 	return "Created table"
 
 
 def _load_data_db_table():
+	# Execute dbt to load the data to db
 	time.sleep(20)
 	return "Data Loaded to table"
 
