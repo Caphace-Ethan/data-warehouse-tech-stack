@@ -34,7 +34,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   data_warehouse_tech_stack:
       # Applies to all files under models/example/
-      example:
+      source:
           materialized: view
 
 

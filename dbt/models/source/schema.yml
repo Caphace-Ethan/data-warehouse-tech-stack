@@ -10,7 +10,7 @@ models:
 
   - name: src_sensor_data
     columns:
-      - name: source_ref
+      - name: source_id
         tests:
           - unique
           - not_null
