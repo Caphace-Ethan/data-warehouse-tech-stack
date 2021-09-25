@@ -31,10 +31,24 @@ def split_text():
 def _get_text_corpus_to_csv():
 	for ii in range(12):
 		csv_file = pd.read_csv(txt_path+str(ii)+".txt", header=None)
-		csv_file.columns = ['utc_time_id', 'source_ref', 'source_id']
-		print(f" Progress: {round((i * 100) / 12, 2)} % ...")
+		csv_file.columns = ['utc_time_id', 'source_id', 'source_ref',
+							'avg_freeflow_speed', 'avg_travel_time',
+							'high_quality_samples', 'samples_below_100pct_ff',
+							'samples_below_95pct_ff', 'samples_below_90pct_ff',
+							'samples_below_85pct_ff', 'samples_below_80pct_ff',
+							'samples_below_75pct_ff', 'samples_below_70pct_ff',
+							'samples_below_65pct_ff', 'samples_below_60pct_ff',
+							'samples_below_55pct_ff', 'samples_below_50pct_ff',
+							'samples_below_45pct_ff', 'samples_below_40pct_ff',
+							'samples_below_35pct_ff', 'samples_below_30pct_ff',
+							'samples_below_25pct_ff', 'samples_below_20pct_ff',
+							'samples_below_15pct_ff', 'samples_below_10pct_ff',
+							'samples_below_5pct_ff'
+							]
+
+		print(f" Progress: {round((ii * 100) / 12, 2)} % ...")
 		try:
-			csv_file.to_csv(csv_path + str(i) + '.csv', index=False)
+			csv_file.to_csv(csv_path + str(ii) + '.csv', index=False)
 			e = "CSV Created"
 		except Exception as e:
 			print(e)
@@ -49,14 +63,6 @@ if __name__ == "__main__":
 	#  For Testing purposes
 	if (False):
 		returned_ = _get_text_corpus_to_csv()
-		# for i in range(12):
-		# 	print(f" Progress: {round((i * 100) / 12, 2)} % ...")
-		# 	returned_list = _get_text_corpus_to_csv(i)
-		# 	try:
-		# 		returned_list.to_csv(csv_path+str(i)+'.csv', index=False)
-		# 		e = "CSV Created"
-		# 	except Exception as e:
-		# 		print(e)
 		print(returned_)
 
 	elif (False):
