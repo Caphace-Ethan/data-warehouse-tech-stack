@@ -67,8 +67,7 @@ x-airflow-common:
 services:
 
   db:
-    image: mysql:5.7
-    command: --default-authentication-plugin=mysql_native_password
+    image: mysql:8.0
     restart: always
     ports:
       - '3306:3306'
@@ -113,7 +112,7 @@ services:
     <<: *airflow-common
     command: webserver
     ports:
-      - '8080:8080'
+      - '8081:8080'
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
       interval: 10s
