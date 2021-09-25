@@ -1,4 +1,4 @@
-CREATE TABLE stations
+CREATE TABLE I80_stations
 (
     ID  INT PRIMARY KEY,
     Fwy INT DEFAULT NULL,
