@@ -2,9 +2,11 @@ import math
 import pandas as pd
 import contextlib
 data_path = './data/I80_davis.txt'
-csv_path = './dbt/data/batch_'
+csv_path = './data/batch_'
+csv_path1 = './dbt/data/sensors_data.csv'
 txt_path = "./data/batch_"
 _new_file = './data/batch'
+
 
 def split_text():
 	l = 3 * 10 ** 6  # lines per split file
@@ -24,36 +26,30 @@ def split_text():
 	return loggs
 
 
-def cloud_get_text_corpus_to_csv(i):
-    with open(txt_path+i+".txt") as f:
-        contents = f.readlines()
-        list_data = []
-        n = 0
-        for line in contents:
-            list_text = {}
-            list_text["sentence"] = line
-            list_data.append(list_text)
-            print(f" Progress: {round((n*100)/len(contents),2)} %")
-            n += 1
-        f.close()
+def _get_text_corpus_to_csv(ii):
 
-		try:
-			df = pd.DataFrame.from_dict(list_data)
-			df['id'] = df.index
-			df.to_csv(csv_path+i+'.csv', index=False)
-			e = "CSV Created"
-		except Exception as e:
-			print(e)
+	csv_file = pd.read_csv(txt_path+str(ii)+".txt", header=None)
+	# csv_file.columns = ['utc_time_id', 'source_ref', 'source_id',]
 
-	return e
+	# sed	1d batch_ *.csv > ../dbt/data/all_sensor_data.csv
+
+	return csv_file
 
 
 if __name__ == "__main__":
 
-	if (False):
-		returned_list = cloud_get_text_corpus_to_csv()
-		print(returned_list)
+	if (True):
+		for i in range(12):
+			print(f" Progress: {round((i * 100) / 12, 2)} % ...")
+			returned_list = _get_text_corpus_to_csv(i)
+			try:
+				returned_list.to_csv(csv_path+str(i)+'.csv', index=False)
 
-	elif (1):
+				e = "CSV Created"
+			except Exception as e:
+				print(e)
+			print(e)
+
+	if (False):
 		split_text()
 
